@@ -1,0 +1,21 @@
+db:
+  image: 'tutum/mysql:5.6'
+  environment: 
+    MYSQL_PASS: "maverick"
+  ports:
+    - "3306"
+redis:
+  image: 'dockerfile/redis'
+  ports:
+    - "6379"
+web:
+  image: batou99/pam-dev
+  ports:
+    - "223:22"
+    - "3000:3000"
+    - "4567:4567"
+    - "9000:9000"
+    - "9292:9292"
+  links:
+    - db
+    - redis:redis1
